@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biodiversité à Pickering</title>
+    <!-- Inclure Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+    <!-- Inclure Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+    <style>
+        #map { /* Définir une hauteur pour la carte */
+            height: 600px;
+            width: 100%;
+        }
+    </style>
+</head>
+ 
+<body>
+    
+    <div id="map"></div>
+ 
+    <script>
+        // Initialiser la carte
+        var mymap = L.map('map').setView([43.8394, -79.0814], 13);
+ 
+        // Ajouter une couche de tuile (tile layer) à partir d'une source OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(mymap);
+ 
+        // Ajouter des marqueurs
+        var marker = L.marker([43.86089, -79.07889]).addTo(mymap);
+        var circle = L.circle([43.89830, -79.06490], {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 500
+        }).addTo(mymap);
+        var polygon = L.polygon([
+            [43.85217, -79.07727],
+            [43.85007, -79.07605],
+            [43.84910, -79.08021],
+            [43.85101, -79.08084],
+        ]).addTo(mymap);
+ 
+        // Ajouter des popups à chaque marqueur
+        marker.bindPopup("<b>École Ronald-Marion</b><br> j etudie ici").openPopup();
+        circle.bindPopup("ici nous irons explorer la biodiversite");
+        polygon.bindPopup("ici nous irons pour une activité dans l'eau.");
+    </script>
+</body>
+</html>
